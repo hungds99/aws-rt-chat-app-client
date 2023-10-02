@@ -1,10 +1,10 @@
-import { createContext, useEffect, useRef, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Auth from './pages/Auth';
-import Chat from './pages/Chat';
-import Home from './pages/Home';
-import { getUserFromJWT } from './shared/common/auth';
-import { User } from './shared/interface/user';
+import { createContext, useEffect, useRef, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Auth from "./pages/Auth";
+import Chat from "./pages/Chat";
+import Home from "./pages/Home";
+import { getUserFromJWT } from "./shared/common/auth";
+import { User } from "./shared/interface/user";
 
 interface AppContextProps {
   authUser: User | null;
@@ -23,18 +23,18 @@ function App() {
   const wssRef = useRef<WebSocket | null>(null);
 
   const verifyApp = () => {
-    const token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem("accessToken");
     const user = getUserFromJWT(token);
     if (user) {
       setAuthUser(user);
       if (!wssRef?.current) {
-        wssRef.current = new WebSocket('ws://localhost:3001', 'echo-protocol');
+        wssRef.current = new WebSocket("ws://localhost:3001", "echo-protocol");
         wssRef.current.onopen = () => {
           wssRef.current?.send(
             JSON.stringify({
-              action: 'auth',
+              action: "auth",
               data: { ...user },
-            })
+            }),
           );
         };
       }
@@ -64,13 +64,13 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route path='/' index element={<Home />} />
-            <Route path='auth' element={<Auth />} />
-            <Route path='chat' element={<Chat />} />
+            <Route path="/" index element={<Home />} />
+            <Route path="auth" element={<Auth />} />
+            <Route path="chat" element={<Chat />} />
             <Route
-              path='*'
+              path="*"
               element={
-                <main style={{ padding: '1rem' }}>
+                <main style={{ padding: "1rem" }}>
                   <p>There's nothing here!</p>
                 </main>
               }
