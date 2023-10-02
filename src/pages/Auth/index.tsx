@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
-import { UserServices } from '../../api/user';
-import { AppContext } from '../../App';
-import { UserLogin } from '../../shared/interface/user';
+import { useContext, useEffect, useState } from "react";
+import { UserServices } from "../../api/user";
+import { AppContext } from "../../App";
+import { UserLogin } from "../../shared/interface/user";
 
 const Auth = () => {
   const context = useContext(AppContext);
   const [user, setUser] = useState<UserLogin>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,27 +23,27 @@ const Auth = () => {
   };
 
   return (
-    <section className='h-screen'>
-      <div className='flex flex-col items-center justify-center h-full'>
+    <section className="h-screen">
+      <div className="flex flex-col items-center justify-center h-full">
         <h1>Auth Page</h1>
-        <div className='flex flex-col gap-3 w-96'>
+        <div className="flex flex-col gap-3 w-96">
           <input
-            className='border'
-            type='text'
-            name='email'
-            id='email'
+            className="border"
+            type="text"
+            name="email"
+            id="email"
             value={user.email}
             onChange={handleInputChange}
           />
           <input
-            className='border'
-            type='password'
-            name='password'
-            id='password'
+            className="border"
+            type="password"
+            name="password"
+            id="password"
             value={user.password}
             onChange={handleInputChange}
           />
-          <button type='button' onClick={handleLogin}>
+          <button type="button" onClick={handleLogin}>
             Login
           </button>
         </div>

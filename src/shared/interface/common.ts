@@ -1,4 +1,4 @@
-import { HTTPCode } from '../common/enum';
+import { HTTPCode } from "../common/enum";
 
 export type Response = {
   code: HTTPCode;

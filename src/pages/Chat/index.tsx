@@ -1,5 +1,5 @@
-import { useContext, useEffect } from 'react';
-import { AppContext } from '../../App';
+import { useContext, useEffect } from "react";
+import { AppContext } from "../../App";
 
 const Chat = () => {
   const { wss, authUser } = useContext(AppContext);
@@ -21,15 +21,15 @@ const Chat = () => {
         </div>
         <div>
           <h1>Create Private Conversation</h1>
-          <input type='text' />
-          <button type='button'>Create</button>
+          <input type="text" />
+          <button type="button">Create</button>
         </div>
         <div>
           <h1>Chat Box</h1>
           <div></div>
           <div>
-            <input type='text' />
-            <button type='button'>Send</button>
+            <input type="text" />
+            <button type="button">Send</button>
           </div>
         </div>
       </div>
