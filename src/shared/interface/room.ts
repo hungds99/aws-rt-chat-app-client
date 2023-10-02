@@ -3,5 +3,5 @@ export type Room = {
   name: string;
   description: string;
   avatar: string;
-  type: 'ROOM';
+  type: "ROOM";
 };
