@@ -1,19 +1,19 @@
-import { useContext, useEffect, useState } from 'react';
-import { UserServices } from '../../api/user';
+import { useContext, useState } from 'react';
 import { AppContext } from '../../App';
+import { UserServices } from '../../api/user';
 import { UserLogin } from '../../shared/interface/user';
 
 const Auth = () => {
   const context = useContext(AppContext);
   const [user, setUser] = useState<UserLogin>({
     email: '',
-    password: '',
+    password: ''
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   };
 

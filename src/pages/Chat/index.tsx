@@ -1,16 +1,4 @@
-import { useContext, useEffect } from 'react';
-import { AppContext } from '../../App';
-
 const Chat = () => {
-  const { wss, authUser } = useContext(AppContext);
-
-  useEffect(() => {
-    console.log(wss);
-    // if (wss) {
-    //   wss.send(JSON.stringify({ action: 'auth', data: { user: { ...authUser } } }));
-    // }
-  }, [wss, authUser]);
-
   const handleConnection = () => {};
 
   return (
