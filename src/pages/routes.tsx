@@ -1,9 +1,9 @@
-import { useRoutes } from 'react-router-dom';
-import About from './About';
-import Auth from './Auth';
-import Chat from './Chat';
-import Home from './Home';
-import Rooms from './Rooms';
+import { useRoutes } from "react-router-dom";
+import About from "./About";
+import Auth from "./Auth";
+import Chat from "./Chat";
+import Home from "./Home";
+import Rooms from "./Rooms";
 
 const Routes = () => {
   const element = useRoutes([

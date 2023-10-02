@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { RoomServices } from '../../api/room';
-import { WSServices } from '../../api/ws';
+import { useEffect, useState } from "react";
+import { RoomServices } from "../../api/room";
+import { WSServices } from "../../api/ws";
 
 export default function Rooms() {
   const [rooms, setRooms] = useState<any[]>([]);
@@ -17,29 +17,29 @@ export default function Rooms() {
   };
 
   const createRoom = async () => {
-    WSServices.createRoom(['76d03424-0c89-491f-b208-5f2c688b6b40']);
+    WSServices.createRoom(["76d03424-0c89-491f-b208-5f2c688b6b40"]);
   };
 
   // Listen to new room
   const subscribeNewRoom = () => {
     WSServices.subscribeNewRoom((room: any) => {
-      console.log('New room', room);
+      console.log("New room", room);
       setRooms((rooms) => [...rooms, room]);
     });
   };
 
   useEffect(() => {
-    console.log('Rooms');
+    console.log("Rooms");
     getRooms();
     subscribeNewRoom();
   }, []);
 
   return (
-    <div className='flex gap-2'>
-      <div className='bg-slate-200'>
+    <div className="flex gap-2">
+      <div className="bg-slate-200">
         <div>
-          <input className='border' type='text' />
-          <button className='bg-blue-200' onClick={createRoom}>
+          <input className="border" type="text" />
+          <button className="bg-blue-200" onClick={createRoom}>
             Create
           </button>
         </div>
@@ -59,10 +59,10 @@ export default function Rooms() {
               <div>{room.createdAt}</div>
               <div>{room.updatedAt}</div>
             </div>
-            <div className='flex gap-1 flex-col'>
+            <div className="flex gap-1 flex-col">
               {room.messages.map((message: any) => {
                 return (
-                  <div className='bg-green-200'>
+                  <div className="bg-green-200">
                     <div>{message.id}</div>
                     <div>{message.content}</div>
                     <div>{message.createdAt}</div>
@@ -71,9 +71,9 @@ export default function Rooms() {
                 );
               })}
             </div>
-            <div className='mt-5 mb-5'>
-              <input className='border' type='text' />
-              <button className='bg-blue-200'>Send</button>
+            <div className="mt-5 mb-5">
+              <input className="border" type="text" />
+              <button className="bg-blue-200">Send</button>
             </div>
           </div>
         )}
