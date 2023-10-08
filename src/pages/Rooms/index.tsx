@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
-import { RoomServices } from '../../api/room';
-import { WSServices } from '../../api/ws';
-import { AppContext } from '../../App';
+import { useContext, useEffect, useState } from "react";
+import { RoomServices } from "../../api/room";
+import { WSServices } from "../../api/ws";
+import { AppContext } from "../../App";
 
 export default function Rooms() {
   const { authUser, ws } = useContext<any>(AppContext);
@@ -28,7 +28,7 @@ export default function Rooms() {
   // Listen to new room
   const subscribeNewRoom = () => {
     WSServices.subscribeNewRoom(ws, (room: any) => {
-      console.log('New room', room);
+      console.log("New room", room);
       setRooms((rooms) => [...rooms, room]);
     });
 
@@ -36,7 +36,7 @@ export default function Rooms() {
       setRoom((room: any) => {
         return {
           ...room,
-          messages: [...room.messages, message]
+          messages: [...room.messages, message],
         };
       });
     });
@@ -52,15 +52,15 @@ export default function Rooms() {
   };
 
   const handleSendMessage = () => {
-    WSServices.createMessage(ws, room.id, authUser.id, 'Hello from client');
+    WSServices.createMessage(ws, room.id, authUser.id, "Hello from client");
   };
 
   return (
-    <div className='flex gap-2'>
-      <div className='bg-slate-200'>
+    <div className="flex gap-2">
+      <div className="bg-slate-200">
         <div>
-          <input className='border' type='text' onChange={handleChangeInput} />
-          <button className='bg-blue-200' onClick={createRoom}>
+          <input className="border" type="text" onChange={handleChangeInput} />
+          <button className="bg-blue-200" onClick={createRoom}>
             Create
           </button>
         </div>
@@ -70,7 +70,7 @@ export default function Rooms() {
               return (
                 room && (
                   <div
-                    className='cursor-pointer'
+                    className="cursor-pointer"
                     onClick={() => getRoom(room.id)}
                   >
                     {room.id}
@@ -88,10 +88,10 @@ export default function Rooms() {
             </div>
             <div>
               <div>Message Lists</div>
-              <div className='flex gap-1 flex-col'>
+              <div className="flex gap-1 flex-col">
                 {room.messages.map((message: any) => {
                   return (
-                    <div className='bg-green-200'>
+                    <div className="bg-green-200">
                       <div>{message.id}</div>
                       <div>{message.content}</div>
                     </div>
@@ -100,9 +100,9 @@ export default function Rooms() {
               </div>
             </div>
 
-            <div className='mt-5 mb-5'>
-              <input className='border' type='text' />
-              <button className='bg-blue-200' onClick={handleSendMessage}>
+            <div className="mt-5 mb-5">
+              <input className="border" type="text" />
+              <button className="bg-blue-200" onClick={handleSendMessage}>
                 Send
               </button>
             </div>
