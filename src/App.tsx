@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState
-} from 'react';
+import { createContext, useEffect, useMemo, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { WSServices } from './api/ws';
 import Auth from './pages/Auth';
@@ -40,9 +34,7 @@ function App() {
   };
 
   const intWs = useMemo(() => {
-    console.log('intWs', ws);
     if (ws?.readyState === ws?.CLOSED || !ws) {
-      console.log('Create new ws');
       const ws = new WebSocket('ws://127.0.0.1:3001');
       setWs(ws);
       return ws;
@@ -64,25 +56,22 @@ function App() {
 
   return (
     <AppContext.Provider value={{ authUser, setAuthUser, ws }}>
-      <div className='bg-yellow-100 p-4 text-center'>Chat app</div>
-      <div>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' index element={<Home />} />
-            <Route path='auth' element={<Auth />} />
-            <Route path='rooms' element={<Rooms />} />
-            <Route path='chat' element={<Chat />} />
-            <Route
-              path='*'
-              element={
-                <main style={{ padding: '1rem' }}>
-                  <p>There's nothing here!</p>
-                </main>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' index element={<Home />} />
+          <Route path='auth' element={<Auth />} />
+          <Route path='rooms' element={<Rooms />} />
+          <Route path='chat' element={<Chat />} />
+          <Route
+            path='*'
+            element={
+              <main style={{ padding: '1rem' }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </AppContext.Provider>
   );
 }

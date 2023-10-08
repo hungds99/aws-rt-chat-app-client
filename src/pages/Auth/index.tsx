@@ -23,30 +23,45 @@ const Auth = () => {
   };
 
   return (
-    <section className='h-screen'>
-      <div className='flex flex-col items-center justify-center h-full'>
-        <h1>Auth Page</h1>
-        <div className='flex flex-col gap-3 w-96'>
-          <input
-            className='border'
-            type='text'
-            name='email'
-            id='email'
-            value={user.email}
-            onChange={handleInputChange}
-          />
-          <input
-            className='border'
-            type='password'
-            name='password'
-            id='password'
-            value={user.password}
-            onChange={handleInputChange}
-          />
-          <button type='button' onClick={handleLogin}>
-            Login
-          </button>
-        </div>
+    <section className='section'>
+      <div className='form-wrapper'>
+        <h1 className='title'>Authentication</h1>
+        <form className='form'>
+          <div className='form-item'>
+            <label className='form-label' htmlFor='email'>
+              Email
+            </label>
+            <input
+              className='form-input'
+              type='text'
+              name='email'
+              id='email'
+              value={user.email}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className='form-item'>
+            <label className='form-label' htmlFor='password'>
+              Password
+            </label>
+            <input
+              className='form-input'
+              type='password'
+              name='password'
+              id='password'
+              value={user.password}
+              onChange={handleInputChange}
+            />
+          </div>
+          <p className='text-center text-error'>
+            Email or password is incorrect. Please try again.
+          </p>
+          <div className='text-center'>
+            <button className='btn' type='button' onClick={handleLogin}>
+              Login
+            </button>
+          </div>
+        </form>
       </div>
     </section>
   );

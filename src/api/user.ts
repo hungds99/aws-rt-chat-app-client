@@ -9,7 +9,6 @@ export const UserServices = {
       email,
       password
     });
-    console.log('user: ', user);
     localStorage.setItem('accessToken', user.accessToken);
     localStorage.setItem('refreshToken', user.refreshToken);
     return user;
