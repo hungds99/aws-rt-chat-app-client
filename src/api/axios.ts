@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios';
 import { HTTPCode } from '../shared/common/enum';
 import { Response } from '../shared/interface/common';
 
@@ -12,13 +12,12 @@ export class AxiosServices {
       withCredentials: true,
     });
 
-    this.axiosInstance.interceptors.request.use((_config: AxiosRequestConfig) => {
+    this.axiosInstance.interceptors.request.use((_config: InternalAxiosRequestConfig<any>) => {
       const token: string | null = localStorage.getItem('accessToken');
+
       if (token) {
-        _config.headers = {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        };
+        _config.headers['Content-Type'] = 'application/json';
+        _config.headers.Authorization = `Bearer ${token}`;
       }
       return _config;
     });
@@ -48,7 +47,7 @@ export class AxiosServices {
           }
         }
         return Promise.reject(error);
-      }
+      },
     );
   }
 

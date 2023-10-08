@@ -35,11 +35,11 @@ export default function Rooms() {
   }, []);
 
   return (
-    <div className='flex gap-2'>
-      <div className='bg-slate-200'>
+    <div className="flex gap-2">
+      <div className="bg-slate-200">
         <div>
-          <input className='border' type='text' />
-          <button className='bg-blue-200' onClick={createRoom}>
+          <input className="border" type="text" />
+          <button className="bg-blue-200" onClick={createRoom}>
             Create
           </button>
         </div>
@@ -59,10 +59,10 @@ export default function Rooms() {
               <div>{room.createdAt}</div>
               <div>{room.updatedAt}</div>
             </div>
-            <div className='flex gap-1 flex-col'>
+            <div className="flex gap-1 flex-col">
               {room.messages.map((message: any) => {
                 return (
-                  <div className='bg-green-200'>
+                  <div className="bg-green-200">
                     <div>{message.id}</div>
                     <div>{message.content}</div>
                     <div>{message.createdAt}</div>
@@ -71,9 +71,9 @@ export default function Rooms() {
                 );
               })}
             </div>
-            <div className='mt-5 mb-5'>
-              <input className='border' type='text' />
-              <button className='bg-blue-200'>Send</button>
+            <div className="mt-5 mb-5">
+              <input className="border" type="text" />
+              <button className="bg-blue-200">Send</button>
             </div>
           </div>
         )}
