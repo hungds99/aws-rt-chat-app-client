@@ -3,16 +3,16 @@ import {
   useCallback,
   useEffect,
   useMemo,
-  useState
-} from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { WSServices } from './api/ws';
-import Auth from './pages/Auth';
-import Chat from './pages/Chat';
-import Home from './pages/Home';
-import Rooms from './pages/Rooms';
-import { getUserFromJWT } from './shared/common/auth';
-import { User } from './shared/interface/user';
+  useState,
+} from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { WSServices } from "./api/ws";
+import Auth from "./pages/Auth";
+import Chat from "./pages/Chat";
+import Home from "./pages/Home";
+import Rooms from "./pages/Rooms";
+import { getUserFromJWT } from "./shared/common/auth";
+import { User } from "./shared/interface/user";
 
 interface AppContextProps {
   authUser: User | null;
@@ -23,7 +23,7 @@ interface AppContextProps {
 export const AppContext = createContext<AppContextProps>({
   authUser: null,
   setAuthUser: () => {},
-  ws: null
+  ws: null,
 });
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
   const [ws, setWs] = useState<WebSocket | null>(null);
 
   const verifyApp = () => {
-    const token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem("accessToken");
     const user = getUserFromJWT(token);
     if (user) {
       setAuthUser(user);
@@ -40,10 +40,10 @@ function App() {
   };
 
   const intWs = useMemo(() => {
-    console.log('intWs', ws);
+    console.log("intWs", ws);
     if (ws?.readyState === ws?.CLOSED || !ws) {
-      console.log('Create new ws');
-      const ws = new WebSocket('ws://127.0.0.1:3001');
+      console.log("Create new ws");
+      const ws = new WebSocket("ws://127.0.0.1:3001");
       setWs(ws);
       return ws;
     }
@@ -53,7 +53,7 @@ function App() {
   useEffect(() => {
     return () => {
       if (ws.readyState === 1) {
-        ws?.close(3000, 'Close connection');
+        ws?.close(3000, "Close connection");
       }
     };
   }, [ws, authUser]);
@@ -64,18 +64,18 @@ function App() {
 
   return (
     <AppContext.Provider value={{ authUser, setAuthUser, ws }}>
-      <div className='bg-yellow-100 p-4 text-center'>Chat app</div>
+      <div className="bg-yellow-100 p-4 text-center">Chat app</div>
       <div>
         <BrowserRouter>
           <Routes>
-            <Route path='/' index element={<Home />} />
-            <Route path='auth' element={<Auth />} />
-            <Route path='rooms' element={<Rooms />} />
-            <Route path='chat' element={<Chat />} />
+            <Route path="/" index element={<Home />} />
+            <Route path="auth" element={<Auth />} />
+            <Route path="rooms" element={<Rooms />} />
+            <Route path="chat" element={<Chat />} />
             <Route
-              path='*'
+              path="*"
               element={
-                <main style={{ padding: '1rem' }}>
+                <main style={{ padding: "1rem" }}>
                   <p>There's nothing here!</p>
                 </main>
               }
