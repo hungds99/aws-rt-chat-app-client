@@ -1,10 +1,7 @@
 import { createContext, useEffect, useMemo, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { WSServices } from './api/ws';
-import Auth from './pages/Auth';
-import Chat from './pages/Chat';
-import Home from './pages/Home';
-import Rooms from './pages/Rooms';
+import router from './router';
 import { getUserFromJWT } from './shared/common/auth';
 import { User } from './shared/interface/user';
 
@@ -56,22 +53,7 @@ function App() {
 
   return (
     <AppContext.Provider value={{ authUser, setAuthUser, ws }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' index element={<Home />} />
-          <Route path='auth' element={<Auth />} />
-          <Route path='rooms' element={<Rooms />} />
-          <Route path='chat' element={<Chat />} />
-          <Route
-            path='*'
-            element={
-              <main style={{ padding: '1rem' }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
+      <RouterProvider router={router} />
     </AppContext.Provider>
   );
 }

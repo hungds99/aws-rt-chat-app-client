@@ -1,15 +1,14 @@
 import React, { useContext, useState } from 'react';
-import { Form } from 'react-router-dom';
-import { AppContext } from '../App';
-import { UserServices } from '../api/user';
-import { UserLogin } from '../shared/interface/user';
-import { Button } from './ui/Button';
-import { Card } from './ui/Card';
-import { FormItem } from './ui/Form';
-import { Input } from './ui/Input';
-import { Label } from './ui/Label';
-import { Text } from './ui/Text';
-import { Typography } from './ui/Typography';
+import { AppContext } from '../../../App';
+import { UserServices } from '../../../api/user';
+import { Button } from '../../../components/ui/Button';
+import { Card } from '../../../components/ui/Card';
+import { Form, FormItem } from '../../../components/ui/Form';
+import { Input } from '../../../components/ui/Input';
+import { Label } from '../../../components/ui/Label';
+import { Text } from '../../../components/ui/Text';
+import { Typography } from '../../../components/ui/Typography';
+import { UserLogin } from '../../../shared/interface/user';
 
 const Login = () => {
   const context = useContext(AppContext);

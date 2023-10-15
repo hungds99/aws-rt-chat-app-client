@@ -12,11 +12,7 @@ export const WSServices = {
     };
   },
   subscribeConnection: (ws: WebSocket): any => {
-    console.log('subscribeConnection: ', ws);
-    ws.addEventListener('open', (event) => {
-      console.log('Connection open: ', event);
-      // ws.send('Hello Server!');
-    });
+    ws.addEventListener('open', (event) => {});
   },
   createRoom: (ws: WebSocket, userId: any, members: any): any => {
     ws.send(
@@ -31,7 +27,6 @@ export const WSServices = {
   },
   subscribeNewRoom: (ws: WebSocket, cb: any): any => {
     ws.onmessage = (event) => {
-      console.log('subscribeNewRoom: ', event);
       const response = JSON.parse(event.data);
       if (response?.data?.status === 'ROOM_CREATED') {
         const room = response?.data?.data;
@@ -58,10 +53,7 @@ export const WSServices = {
   },
   subscribeNewMessage: (ws: WebSocket, cb: any): any => {
     ws.onmessage = (event) => {
-      console.log('subscribeNewMessage: ', event);
       const response = JSON.parse(event.data);
-      console.log('subscribeNewMessage: ', response);
-
       if (
         response?.data?.status === 'MESSAGE_CREATED' ||
         response?.status === 'MESSAGE_RECEIVED'
