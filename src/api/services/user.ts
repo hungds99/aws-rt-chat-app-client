@@ -1,14 +1,14 @@
-import { AuthUser, User } from '../../shared/interface/user';
-import axiosClient from '../axios';
+import { AuthUser, User } from "../../shared/interface/user";
+import axiosClient from "../axios";
 
 export const UserServices = {
   login: async (email: string, password: string): Promise<User> => {
-    const user = await axiosClient.post<AuthUser, any>('/auth/login', {
+    const user = await axiosClient.post<AuthUser, any>("/auth/login", {
       email,
-      password
+      password,
     });
-    localStorage.setItem('accessToken', user.accessToken);
-    localStorage.setItem('refreshToken', user.refreshToken);
+    localStorage.setItem("accessToken", user.accessToken);
+    localStorage.setItem("refreshToken", user.refreshToken);
     return user;
   },
 
@@ -16,14 +16,14 @@ export const UserServices = {
     email: string,
     password: string,
     firstName: string,
-    lastName: string
+    lastName: string,
   ): Promise<User> => {
-    const user = await axiosClient.post<User, any>('auth/register', {
+    const user = await axiosClient.post<User, any>("auth/register", {
       email,
       password,
       firstName,
-      lastName
+      lastName,
     });
     return user;
-  }
+  },
 };

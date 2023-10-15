@@ -1,5 +1,5 @@
-import { createContext } from 'react';
-import { User } from '../shared/interface/user';
+import { createContext } from "react";
+import { User } from "../shared/interface/user";
 
 interface AppContextProps {
   authUser: User | null;
@@ -8,5 +8,5 @@ interface AppContextProps {
 
 export const AppContext = createContext<AppContextProps>({
   authUser: null,
-  setAuthUser: () => {}
+  setAuthUser: () => {},
 });

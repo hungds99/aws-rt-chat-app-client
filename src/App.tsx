@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
-import { RouterProvider } from 'react-router-dom';
-import { wsAuth } from './api/websocket/auth';
-import wsClient from './api/ws';
-import { AppContext } from './context/app';
-import router from './router';
-import { getUserFromJWT } from './shared/common/auth';
-import { User } from './shared/interface/user';
+import { useEffect, useState } from "react";
+import { RouterProvider } from "react-router-dom";
+import { wsAuth } from "./api/websocket/auth";
+import wsClient from "./api/ws";
+import { AppContext } from "./context/app";
+import router from "./router";
+import { getUserFromJWT } from "./shared/common/auth";
+import { User } from "./shared/interface/user";
 
 function App() {
   const [authUser, setAuthUser] = useState<User | null>(null);
 
   const verifyApp = () => {
-    const token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem("accessToken");
     const user = getUserFromJWT(token);
     if (user) {
       setAuthUser(user);
@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     return () => {
       if (wsClient.readyState === 1) {
-        wsClient.close(3000, 'Close connection');
+        wsClient.close(3000, "Close connection");
       }
     };
   }, []);
