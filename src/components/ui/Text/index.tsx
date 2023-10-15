@@ -1,4 +1,4 @@
-import './style.css';
+import "./style.css";
 
 export interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
   children: React.ReactNode;

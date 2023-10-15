@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
@@ -8,7 +8,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 
 export { Card };

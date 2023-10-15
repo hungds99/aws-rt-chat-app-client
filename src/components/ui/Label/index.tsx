@@ -1,5 +1,5 @@
-import React from 'react';
-import './style.css';
+import React from "react";
+import "./style.css";
 
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {}
@@ -7,7 +7,7 @@ export interface LabelProps
 const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   ({ className, ...props }, ref) => {
     return <label className={`form-label ${className}`} ref={ref} {...props} />;
-  }
+  },
 );
 
 export { Label };
