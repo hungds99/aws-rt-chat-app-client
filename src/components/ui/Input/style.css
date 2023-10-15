@@ -1,0 +1,10 @@
+.form-input {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #333;
+}

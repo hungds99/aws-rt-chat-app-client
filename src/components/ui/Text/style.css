@@ -1,0 +1,11 @@
+.text {
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-error {
+  color: red;
+  font-size: 0.75rem;
+}
