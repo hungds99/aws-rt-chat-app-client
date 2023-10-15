@@ -1,17 +1,17 @@
-import { useEffect, useMemo, useState } from 'react';
-import { RouterProvider } from 'react-router-dom';
-import { WSServices } from './api/ws';
-import { AppContext } from './context/app';
-import router from './router';
-import { getUserFromJWT } from './shared/common/auth';
-import { User } from './shared/interface/user';
+import { useEffect, useMemo, useState } from "react";
+import { RouterProvider } from "react-router-dom";
+import { WSServices } from "./api/ws";
+import { AppContext } from "./context/app";
+import router from "./router";
+import { getUserFromJWT } from "./shared/common/auth";
+import { User } from "./shared/interface/user";
 
 function App() {
   const [authUser, setAuthUser] = useState<User | null>(null);
   const [ws, setWs] = useState<WebSocket | null>(null);
 
   const verifyApp = () => {
-    const token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem("accessToken");
     const user = getUserFromJWT(token);
     if (user) {
       setAuthUser(user);
@@ -21,7 +21,7 @@ function App() {
 
   const intWs = useMemo(() => {
     if (ws?.readyState === ws?.CLOSED || !ws) {
-      const ws = new WebSocket('ws://127.0.0.1:3001');
+      const ws = new WebSocket("ws://127.0.0.1:3001");
       setWs(ws);
       return ws;
     }
@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     return () => {
       if (ws.readyState === 1) {
-        ws?.close(3000, 'Close connection');
+        ws?.close(3000, "Close connection");
       }
     };
   }, [ws, authUser]);
