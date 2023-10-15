@@ -6,7 +6,7 @@ export interface LabelProps
 
 const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   ({ className, ...props }, ref) => {
-    return <label className={`form-label ${className}`} ref={ref} {...props} />;
+    return <label className={`label ${className}`} ref={ref} {...props} />;
   }
 );
 

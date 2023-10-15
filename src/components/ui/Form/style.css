@@ -10,3 +10,7 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.form-item label {
+  font-weight: bold;
+}
