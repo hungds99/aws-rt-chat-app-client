@@ -1,26 +1,26 @@
-import React, { useContext, useState } from 'react';
-import { AppContext } from '../../../App';
-import { UserServices } from '../../../api/services/user';
-import { Button } from '../../../components/ui/Button';
-import { Card } from '../../../components/ui/Card';
-import { Form, FormItem } from '../../../components/ui/Form';
-import { Input } from '../../../components/ui/Input';
-import { Label } from '../../../components/ui/Label';
-import { Text } from '../../../components/ui/Text';
-import { Typography } from '../../../components/ui/Typography';
-import { UserLogin } from '../../../shared/interface/user';
+import React, { useContext, useState } from "react";
+import { AppContext } from "../../../App";
+import { UserServices } from "../../../api/services/user";
+import { Button } from "../../../components/ui/Button";
+import { Card } from "../../../components/ui/Card";
+import { Form, FormItem } from "../../../components/ui/Form";
+import { Input } from "../../../components/ui/Input";
+import { Label } from "../../../components/ui/Label";
+import { Text } from "../../../components/ui/Text";
+import { Typography } from "../../../components/ui/Typography";
+import { UserLogin } from "../../../shared/interface/user";
 
 const Register = () => {
   const context = useContext(AppContext);
   const [user, setUser] = useState<UserLogin>({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -31,33 +31,33 @@ const Register = () => {
 
   return (
     <Card>
-      <Typography as='h1'>Authentication</Typography>
+      <Typography as="h1">Authentication</Typography>
       <Form>
         <FormItem>
-          <Label htmlFor='email'>Email</Label>
+          <Label htmlFor="email">Email</Label>
           <Input
-            id='email'
-            type='text'
-            name='email'
+            id="email"
+            type="text"
+            name="email"
             value={user.email}
             onChange={handleInputChange}
           />
         </FormItem>
         <FormItem>
-          <Label htmlFor='password'>Password</Label>
+          <Label htmlFor="password">Password</Label>
           <Input
-            id='password'
-            type='password'
-            name='password'
+            id="password"
+            type="password"
+            name="password"
             value={user.password}
             onChange={handleInputChange}
           />
         </FormItem>
-        <Text className='text-center text-error'>
+        <Text className="text-center text-error">
           Email or password is incorrect. Please try again.
         </Text>
-        <div className='text-center'>
-          <Button className='btn' type='button' onClick={handleLogin}>
+        <div className="text-center">
+          <Button className="btn" type="button" onClick={handleLogin}>
             Login
           </Button>
         </div>
