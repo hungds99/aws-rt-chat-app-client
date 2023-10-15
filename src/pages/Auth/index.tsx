@@ -1,8 +1,8 @@
-import Login from '../../components/Login';
+import Login from "../../components/Login";
 
 const Auth = () => {
   return (
-    <section className='section'>
+    <section className="section">
       <Login />
     </section>
   );
