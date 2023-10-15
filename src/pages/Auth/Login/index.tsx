@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { AppContext } from '../../../App';
 import { UserServices } from '../../../api/user';
 import { Button } from '../../../components/ui/Button';
 import { Card } from '../../../components/ui/Card';
@@ -9,6 +8,7 @@ import { Label } from '../../../components/ui/Label';
 import { Text } from '../../../components/ui/Text';
 import { Typography } from '../../../components/ui/Typography';
 import { UserLogin } from '../../../shared/interface/user';
+import { AppContext } from '../../../context/app';
 
 const Login = () => {
   const context = useContext(AppContext);

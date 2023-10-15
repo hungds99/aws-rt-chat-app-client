@@ -1,21 +1,10 @@
-import { createContext, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { WSServices } from './api/ws';
+import { AppContext } from './context/app';
 import router from './router';
 import { getUserFromJWT } from './shared/common/auth';
 import { User } from './shared/interface/user';
-
-interface AppContextProps {
-  authUser: User | null;
-  setAuthUser: (user: User | null) => void;
-  ws: WebSocket | null;
-}
-
-export const AppContext = createContext<AppContextProps>({
-  authUser: null,
-  setAuthUser: () => {},
-  ws: null
-});
 
 function App() {
   const [authUser, setAuthUser] = useState<User | null>(null);
