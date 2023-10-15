@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from '../../../App';
-import { UserServices } from '../../../api/user';
+import { UserServices } from '../../../api/services/user';
 import { Button } from '../../../components/ui/Button';
 import { Card } from '../../../components/ui/Card';
 import { Form, FormItem } from '../../../components/ui/Form';

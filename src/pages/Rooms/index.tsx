@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import { RoomServices } from '../../api/room';
-import { WSServices } from '../../api/ws';
-import { AppContext } from '../../App';
+import { RoomServices } from '../../api/services/room';
+import { wsMessage } from '../../api/websocket/message';
+import { wsRoom } from '../../api/websocket/room';
+import { AppContext } from '../../context/app';
 
 export default function Rooms() {
-  const { authUser, ws } = useContext<any>(AppContext);
+  const { authUser } = useContext<any>(AppContext);
 
   const [members, setMembers] = useState<any[]>([]);
 
@@ -22,17 +23,16 @@ export default function Rooms() {
   };
 
   const createRoom = async () => {
-    WSServices.createRoom(ws, authUser.id, members);
+    wsRoom.createRoom(authUser.id, members);
   };
 
   // Listen to new room
   const subscribeNewRoom = () => {
-    WSServices.subscribeNewRoom(ws, (room: any) => {
-      console.log('New room', room);
+    wsRoom.subscribeNewRoom((room: any) => {
       setRooms((rooms) => [...rooms, room]);
     });
 
-    WSServices.subscribeNewMessage(ws, (message: any) => {
+    wsMessage.subscribeNewMessage((message: any) => {
       setRoom((room: any) => {
         return {
           ...room,
@@ -52,7 +52,7 @@ export default function Rooms() {
   };
 
   const handleSendMessage = () => {
-    WSServices.createMessage(ws, room.id, authUser.id, 'Hello from client');
+    wsMessage.createMessage(room.id, authUser.id, 'Hello from client');
   };
 
   return (

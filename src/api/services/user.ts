@@ -1,11 +1,9 @@
-import { AuthUser, User } from '../shared/interface/user';
-import { AxiosServices } from './axios';
-
-const axiosServices = AxiosServices.getInstance();
+import { AuthUser, User } from '../../shared/interface/user';
+import axiosClient from '../axios';
 
 export const UserServices = {
   login: async (email: string, password: string): Promise<User> => {
-    const user = await axiosServices.post<AuthUser>('/auth/login', {
+    const user = await axiosClient.post<AuthUser, any>('/auth/login', {
       email,
       password
     });
@@ -20,7 +18,7 @@ export const UserServices = {
     firstName: string,
     lastName: string
   ): Promise<User> => {
-    const user = await axiosServices.post<User>('auth/register', {
+    const user = await axiosClient.post<User, any>('auth/register', {
       email,
       password,
       firstName,

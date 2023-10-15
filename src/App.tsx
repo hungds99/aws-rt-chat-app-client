@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
-import { WSServices } from './api/ws';
+import { wsAuth } from './api/websocket/auth';
+import wsClient from './api/ws';
 import { AppContext } from './context/app';
 import router from './router';
 import { getUserFromJWT } from './shared/common/auth';
@@ -8,40 +9,30 @@ import { User } from './shared/interface/user';
 
 function App() {
   const [authUser, setAuthUser] = useState<User | null>(null);
-  const [ws, setWs] = useState<WebSocket | null>(null);
 
   const verifyApp = () => {
     const token = localStorage.getItem('accessToken');
     const user = getUserFromJWT(token);
     if (user) {
       setAuthUser(user);
-      WSServices.auth(ws, user);
+      wsAuth.auth(user);
     }
   };
 
-  const intWs = useMemo(() => {
-    if (ws?.readyState === ws?.CLOSED || !ws) {
-      const ws = new WebSocket('ws://127.0.0.1:3001');
-      setWs(ws);
-      return ws;
-    }
-    return ws;
-  }, [ws]);
-
   useEffect(() => {
     return () => {
-      if (ws.readyState === 1) {
-        ws?.close(3000, 'Close connection');
+      if (wsClient.readyState === 1) {
+        wsClient.close(3000, 'Close connection');
       }
     };
-  }, [ws, authUser]);
+  }, []);
 
   useEffect(() => {
     verifyApp();
   }, []);
 
   return (
-    <AppContext.Provider value={{ authUser, setAuthUser, ws }}>
+    <AppContext.Provider value={{ authUser, setAuthUser }}>
       <RouterProvider router={router} />
     </AppContext.Provider>
   );
