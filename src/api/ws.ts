@@ -3,32 +3,32 @@ export const WSServices = {
     ws.onopen = () => {
       ws.send(
         JSON.stringify({
-          action: 'auth',
+          action: "auth",
           data: {
-            userId: user.id
-          }
-        })
+            userId: user.id,
+          },
+        }),
       );
     };
   },
   subscribeConnection: (ws: WebSocket): any => {
-    ws.addEventListener('open', (event) => {});
+    ws.addEventListener("open", (event) => {});
   },
   createRoom: (ws: WebSocket, userId: any, members: any): any => {
     ws.send(
       JSON.stringify({
-        action: 'createRoom',
+        action: "createRoom",
         data: {
           userId: userId,
-          memberIds: [...members]
-        }
-      })
+          memberIds: [...members],
+        },
+      }),
     );
   },
   subscribeNewRoom: (ws: WebSocket, cb: any): any => {
     ws.onmessage = (event) => {
       const response = JSON.parse(event.data);
-      if (response?.data?.status === 'ROOM_CREATED') {
+      if (response?.data?.status === "ROOM_CREATED") {
         const room = response?.data?.data;
         cb(room);
       }
@@ -38,29 +38,29 @@ export const WSServices = {
     ws: WebSocket,
     roomId: any,
     senderId: string,
-    message: any
+    message: any,
   ): any => {
     ws.send(
       JSON.stringify({
-        action: 'createMessage',
+        action: "createMessage",
         data: {
           roomId: roomId,
           userId: senderId,
-          content: message
-        }
-      })
+          content: message,
+        },
+      }),
     );
   },
   subscribeNewMessage: (ws: WebSocket, cb: any): any => {
     ws.onmessage = (event) => {
       const response = JSON.parse(event.data);
       if (
-        response?.data?.status === 'MESSAGE_CREATED' ||
-        response?.status === 'MESSAGE_RECEIVED'
+        response?.data?.status === "MESSAGE_CREATED" ||
+        response?.status === "MESSAGE_RECEIVED"
       ) {
         const message = response?.data?.data || response?.data;
         cb(message);
       }
     };
-  }
+  },
 };
