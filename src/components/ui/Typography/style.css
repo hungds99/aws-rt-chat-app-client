@@ -1,20 +1,2 @@
 .typography {
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.6rem;
-  line-height: 1.5;
-  color: #333;
-  font-weight: 400;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }

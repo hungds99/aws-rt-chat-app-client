@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { createElement } from 'react';
 import './style.css';
 
@@ -10,7 +11,7 @@ const Typography = ({ as, className, children, ...rest }: TypographyProps) => {
     as,
     Object.assign(
       {
-        className: `typography ${className}`
+        className: clsx('typography', className)
       },
       rest
     ),

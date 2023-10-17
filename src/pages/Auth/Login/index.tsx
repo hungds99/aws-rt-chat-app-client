@@ -1,14 +1,25 @@
 import React, { useContext, useState } from 'react';
 import { UserServices } from '../../../api/services/user';
 import { Button } from '../../../components/ui/Button';
-import { Card } from '../../../components/ui/Card';
-import { Form, FormItem } from '../../../components/ui/Form';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader
+} from '../../../components/ui/Card';
+import {
+  Form,
+  FormControl,
+  FormItem,
+  FormLabel
+} from '../../../components/ui/Form';
 import { Input } from '../../../components/ui/Input';
 import { Label } from '../../../components/ui/Label';
-import { Text } from '../../../components/ui/Text';
 import { Typography } from '../../../components/ui/Typography';
-import { UserLogin } from '../../../shared/interface/user';
 import { AppContext } from '../../../context/app';
+import { UserLogin } from '../../../shared/interface/user';
+import './style.css';
+import { Divider } from '../../../components/ui/Divider';
 
 const Login = () => {
   const context = useContext(AppContext);
@@ -30,38 +41,49 @@ const Login = () => {
   };
 
   return (
-    <Card>
-      <Typography as='h1'>Authentication</Typography>
-      <Form>
-        <FormItem>
-          <Label htmlFor='email'>Email</Label>
-          <Input
-            id='email'
-            type='text'
-            name='email'
-            value={user.email}
-            onChange={handleInputChange}
-          />
-        </FormItem>
-        <FormItem>
-          <Label htmlFor='password'>Password</Label>
-          <Input
-            id='password'
-            type='password'
-            name='password'
-            value={user.password}
-            onChange={handleInputChange}
-          />
-        </FormItem>
-        <Text className='text-center text-error'>
-          Email or password is incorrect. Please try again.
-        </Text>
-        <div className='text-center'>
+    <Card className='auth__card'>
+      <CardHeader className='auth__card__title'>
+        <Typography as='h3'>Sign in with your account</Typography>
+      </CardHeader>
+      <CardContent>
+        <Form>
+          <FormItem>
+            <FormLabel htmlFor='email'>Email</FormLabel>
+            <FormControl>
+              <Input
+                id='email'
+                type='text'
+                name='email'
+                value={user.email}
+                placeholder='example@gmail.com'
+                onChange={handleInputChange}
+              />
+            </FormControl>
+          </FormItem>
+          <FormItem>
+            <Label htmlFor='password'>Password</Label>
+            <FormControl>
+              <Input
+                id='password'
+                type='password'
+                name='password'
+                value={user.password}
+                placeholder='********'
+                onChange={handleInputChange}
+              />
+            </FormControl>
+          </FormItem>
           <Button className='btn' type='button' onClick={handleLogin}>
             Login
           </Button>
-        </div>
-      </Form>
+        </Form>
+      </CardContent>
+      <CardFooter>
+        <Divider />
+        <Typography as='p' className='auth__card__footer'>
+          Don't have an account? <a href='/signup'>Sign up</a>
+        </Typography>
+      </CardFooter>
     </Card>
   );
 };

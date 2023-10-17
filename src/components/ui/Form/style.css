@@ -1,7 +1,6 @@
 .form {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   gap: 1rem;
 }
 
@@ -11,6 +10,7 @@
   gap: 0.5rem;
 }
 
-.form-item label {
-  font-weight: bold;
+.form-control {
+  width: 100%;
+  position: relative;
 }

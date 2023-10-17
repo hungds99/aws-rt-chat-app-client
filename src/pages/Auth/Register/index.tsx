@@ -1,13 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { AppContext } from '../../../App';
 import { UserServices } from '../../../api/services/user';
 import { Button } from '../../../components/ui/Button';
-import { Card } from '../../../components/ui/Card';
+import { Card, CardContent, CardHeader } from '../../../components/ui/Card';
 import { Form, FormItem } from '../../../components/ui/Form';
 import { Input } from '../../../components/ui/Input';
 import { Label } from '../../../components/ui/Label';
-import { Text } from '../../../components/ui/Text';
 import { Typography } from '../../../components/ui/Typography';
+import { AppContext } from '../../../context/app';
 import { UserLogin } from '../../../shared/interface/user';
 
 const Register = () => {
@@ -31,37 +30,38 @@ const Register = () => {
 
   return (
     <Card>
-      <Typography as='h1'>Authentication</Typography>
-      <Form>
-        <FormItem>
-          <Label htmlFor='email'>Email</Label>
-          <Input
-            id='email'
-            type='text'
-            name='email'
-            value={user.email}
-            onChange={handleInputChange}
-          />
-        </FormItem>
-        <FormItem>
-          <Label htmlFor='password'>Password</Label>
-          <Input
-            id='password'
-            type='password'
-            name='password'
-            value={user.password}
-            onChange={handleInputChange}
-          />
-        </FormItem>
-        <Text className='text-center text-error'>
-          Email or password is incorrect. Please try again.
-        </Text>
-        <div className='text-center'>
-          <Button className='btn' type='button' onClick={handleLogin}>
-            Login
-          </Button>
-        </div>
-      </Form>
+      <CardHeader>
+        <Typography as='h1'>Register new account</Typography>
+      </CardHeader>
+      <CardContent>
+        <Form>
+          <FormItem>
+            <Label htmlFor='email'>Email</Label>
+            <Input
+              id='email'
+              type='text'
+              name='email'
+              value={user.email}
+              onChange={handleInputChange}
+            />
+          </FormItem>
+          <FormItem>
+            <Label htmlFor='password'>Password</Label>
+            <Input
+              id='password'
+              type='password'
+              name='password'
+              value={user.password}
+              onChange={handleInputChange}
+            />
+          </FormItem>
+          <div className='text-center'>
+            <Button className='btn' type='button' onClick={handleLogin}>
+              Login
+            </Button>
+          </div>
+        </Form>
+      </CardContent>
     </Card>
   );
 };
