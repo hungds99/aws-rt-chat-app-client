@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
-import { UserServices } from '../../../api/services/user';
+import { useFormik } from 'formik';
+import { useContext, useState } from 'react';
+import { Link, redirect } from 'react-router-dom';
+import * as Yup from 'yup';
 import { Button } from '../../../components/ui/Button';
 import {
   Card,
@@ -15,28 +17,34 @@ import {
   FormLabel
 } from '../../../components/ui/Form';
 import { Input } from '../../../components/ui/Input';
-import { Label } from '../../../components/ui/Label';
 import { Typography } from '../../../components/ui/Typography';
-import { UserLogin } from '../../../shared/interface/user';
+import { AuthContext } from '../../../providers/auth';
 import './style.css';
-import { Link } from 'react-router-dom';
+
+const loginValidation = {
+  email: Yup.string().email().required(),
+  password: Yup.string().required()
+};
 
 const Login = () => {
-  const [user, setUser] = useState<UserLogin>({
-    email: '',
-    password: ''
+  const { login } = useContext(AuthContext);
+  const [isError, setIsError] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    validationSchema: Yup.object(loginValidation),
+    onSubmit: async (values) => {
+      try {
+        await login(values.email, values.password);
+        redirect('/');
+      } catch (error) {
+        setIsError(true);
+      }
+    }
   });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleLogin = async () => {
-    const authUser = await UserServices.login(user.email, user.password);
-  };
 
   return (
     <Card className='auth__card'>
@@ -44,36 +52,39 @@ const Login = () => {
         <Typography as='h3'>Sign in with your account</Typography>
       </CardHeader>
       <CardContent>
-        <Form>
+        <Form onSubmit={formik.handleSubmit}>
           <FormItem>
             <FormLabel htmlFor='email'>Email</FormLabel>
             <FormControl>
               <Input
                 id='email'
-                type='text'
                 name='email'
-                value={user.email}
+                type='email'
                 placeholder='example@gmail.com'
-                onChange={handleInputChange}
+                onChange={formik.handleChange}
+                value={formik.values.email}
+                error={formik.errors.email}
               />
             </FormControl>
           </FormItem>
           <FormItem>
-            <Label htmlFor='password'>Password</Label>
+            <FormLabel htmlFor='password'>Password</FormLabel>
             <FormControl>
               <Input
                 id='password'
-                type='password'
                 name='password'
-                value={user.password}
+                type='password'
                 placeholder='********'
-                onChange={handleInputChange}
+                onChange={formik.handleChange}
+                value={formik.values.password}
+                error={formik.errors.password}
               />
             </FormControl>
           </FormItem>
-          <Button className='btn' type='button' onClick={handleLogin}>
-            Login
-          </Button>
+          <Typography as='p' size='sm' color='danger'>
+            {isError ? 'Invalid email or password' : ''}
+          </Typography>
+          <Button type='submit'>Login</Button>
         </Form>
       </CardContent>
       <CardFooter>

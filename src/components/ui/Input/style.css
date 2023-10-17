@@ -9,3 +9,11 @@
   outline: none;
   border-color: #333;
 }
+
+.input-error {
+  border-color: #db3c3c;
+}
+
+.input-error:focus {
+  border-color: #db3c3c;
+}

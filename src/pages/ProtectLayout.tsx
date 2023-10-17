@@ -1,13 +1,15 @@
-import { useContext } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { Navigate, Outlet, redirect } from 'react-router-dom';
 import { AuthContext } from '../providers/auth';
 
 const ProtectPage = () => {
   const { user } = useContext(AuthContext);
 
-  if (!user) {
-    return <Navigate to={'/login'} />;
-  }
+  useEffect(() => {
+    if (!user) {
+      redirect('/auth/login');
+    }
+  }, [user]);
 
   return <Outlet />;
 };
