@@ -1,41 +1,57 @@
-import { useEffect, useState } from 'react';
-import { RouterProvider } from 'react-router-dom';
-import { wsAuth } from './api/websocket/auth';
-import wsClient from './api/ws';
-import { AppContext } from './context/app';
-import router from './router';
-import { getUserFromJWT } from './shared/common/auth';
-import { User } from './shared/interface/user';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
+import AuthLayout from './pages/Auth/layout';
+import Home from './pages/Home';
+import ProtectLayout from './pages/ProtectLayout';
+import Rooms from './pages/Rooms';
+import Chat from './pages/Rooms/Chat';
+import { AuthProvider } from './providers/auth';
 
-function App() {
-  const [authUser, setAuthUser] = useState<User | null>(null);
-
-  const verifyApp = () => {
-    const token = localStorage.getItem('accessToken');
-    const user = getUserFromJWT(token);
-    if (user) {
-      setAuthUser(user);
-      wsAuth.auth(user);
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      if (wsClient.readyState === 1) {
-        wsClient.close(3000, 'Close connection');
+const router = createBrowserRouter([
+  {
+    element: <AuthLayout />,
+    children: [
+      {
+        path: '/login',
+        element: <Login />
+      },
+      {
+        path: '/register',
+        element: <Register />
       }
-    };
-  }, []);
+    ]
+  },
+  {
+    element: <ProtectLayout />,
+    children: [
+      {
+        path: '/',
+        index: true,
+        element: <Home />
+      },
+      {
+        path: '/rooms',
+        element: <Rooms />
+      },
+      {
+        path: '/chat/:roomId',
+        element: <Chat />
+      }
+    ]
+  },
+  {
+    path: '*',
+    element: <h1>Not Found</h1>
+  }
+]);
 
-  useEffect(() => {
-    verifyApp();
-  }, []);
-
+const App = () => {
   return (
-    <AppContext.Provider value={{ authUser, setAuthUser }}>
+    <AuthProvider>
       <RouterProvider router={router} />
-    </AppContext.Provider>
+    </AuthProvider>
   );
-}
+};
 
 export default App;

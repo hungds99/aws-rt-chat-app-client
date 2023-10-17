@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { UserServices } from '../../../api/services/user';
 import { Button } from '../../../components/ui/Button';
 import {
@@ -7,6 +7,7 @@ import {
   CardFooter,
   CardHeader
 } from '../../../components/ui/Card';
+import { Divider } from '../../../components/ui/Divider';
 import {
   Form,
   FormControl,
@@ -16,13 +17,11 @@ import {
 import { Input } from '../../../components/ui/Input';
 import { Label } from '../../../components/ui/Label';
 import { Typography } from '../../../components/ui/Typography';
-import { AppContext } from '../../../context/app';
 import { UserLogin } from '../../../shared/interface/user';
 import './style.css';
-import { Divider } from '../../../components/ui/Divider';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
-  const context = useContext(AppContext);
   const [user, setUser] = useState<UserLogin>({
     email: '',
     password: ''
@@ -37,7 +36,6 @@ const Login = () => {
 
   const handleLogin = async () => {
     const authUser = await UserServices.login(user.email, user.password);
-    context.setAuthUser(authUser);
   };
 
   return (
@@ -80,8 +78,8 @@ const Login = () => {
       </CardContent>
       <CardFooter>
         <Divider />
-        <Typography as='p' className='auth__card__footer'>
-          Don't have an account? <a href='/signup'>Sign up</a>
+        <Typography as='p'>
+          Don't have an account? <Link to='/register'>Register</Link>
         </Typography>
       </CardFooter>
     </Card>

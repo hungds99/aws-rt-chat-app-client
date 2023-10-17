@@ -1,12 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RoomServices } from '../../api/services/room';
 import { wsMessage } from '../../api/websocket/message';
 import { wsRoom } from '../../api/websocket/room';
-import { AppContext } from '../../context/app';
 
 export default function Rooms() {
-  const { authUser } = useContext<any>(AppContext);
-
   const [members, setMembers] = useState<any[]>([]);
 
   const [rooms, setRooms] = useState<any[]>([]);
@@ -23,7 +20,7 @@ export default function Rooms() {
   };
 
   const createRoom = async () => {
-    wsRoom.createRoom(authUser.id, members);
+    wsRoom.createRoom('authUser.id', members);
   };
 
   // Listen to new room
@@ -52,7 +49,7 @@ export default function Rooms() {
   };
 
   const handleSendMessage = () => {
-    wsMessage.createMessage(room.id, authUser.id, 'Hello from client');
+    wsMessage.createMessage(room.id, ' authUser.id', 'Hello from client');
   };
 
   return (

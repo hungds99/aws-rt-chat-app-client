@@ -10,6 +10,14 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(
   )
 );
 
+export interface FormGroupProps
+  extends React.FormHTMLAttributes<HTMLDivElement> {}
+const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
+  ({ className, ...props }, ref) => (
+    <div className={clsx('form-group', className)} ref={ref} {...props} />
+  )
+);
+
 export interface FormItemProps extends React.HTMLAttributes<HTMLDivElement> {}
 const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(
   ({ className, children, ...props }, ref) => (
@@ -35,4 +43,4 @@ const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
   )
 );
 
-export { Form, FormControl, FormItem, FormLabel };
+export { Form, FormControl, FormGroup, FormItem, FormLabel };
