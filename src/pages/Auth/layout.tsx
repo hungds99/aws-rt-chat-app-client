@@ -1,17 +1,17 @@
-import { useContext } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import { AuthContext } from '../../providers/auth';
-import './style.css';
+import { useContext } from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { AuthContext } from "../../providers/auth";
+import "./style.css";
 
 const AuthLayout = () => {
   const { user, isLoading } = useContext(AuthContext);
 
   if (user) {
-    return <Navigate to='/' />;
+    return <Navigate to="/" />;
   } else {
     return isLoading ? (
-      <div className='auth-layout'>
-        <div className='auth-layout__content'>
+      <div className="auth-layout">
+        <div className="auth-layout__content">
           <Outlet />
         </div>
       </div>

@@ -1,7 +1,7 @@
-import React, { createContext, useEffect } from 'react';
-import { UserServices } from '../api/services/user';
-import { getUserFromJWT } from '../shared/common/auth';
-import { User } from '../shared/interface/user';
+import React, { createContext, useEffect } from "react";
+import { UserServices } from "../api/services/user";
+import { getUserFromJWT } from "../shared/common/auth";
+import { User } from "../shared/interface/user";
 
 interface AuthContextProps {
   user: User | null;
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: any) => {
 
   const verifyAuth = () => {
     setIsLoading(true);
-    const token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem("accessToken");
     const user = getUserFromJWT(token);
     if (user) {
       setUser(user);
