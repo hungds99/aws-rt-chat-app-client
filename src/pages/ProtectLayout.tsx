@@ -1,13 +1,13 @@
-import { useContext, useEffect } from 'react';
-import { Navigate, Outlet, redirect } from 'react-router-dom';
-import { AuthContext } from '../providers/auth';
+import { useContext, useEffect } from "react";
+import { Navigate, Outlet, redirect } from "react-router-dom";
+import { AuthContext } from "../providers/auth";
 
 const ProtectPage = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (!user) {
-      redirect('/auth/login');
+      redirect("/auth/login");
     }
   }, [user]);
 
