@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { Navigate, Outlet, redirect } from 'react-router-dom';
+import { Outlet, redirect } from 'react-router-dom';
 import { AuthContext } from '../providers/auth';
 
 const ProtectPage = () => {

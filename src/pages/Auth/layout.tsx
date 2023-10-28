@@ -9,13 +9,15 @@ const AuthLayout = () => {
   if (user) {
     return <Navigate to='/' />;
   } else {
-    return isLoading ? (
+    return !isLoading ? (
       <div className='auth-layout'>
         <div className='auth-layout__content'>
           <Outlet />
         </div>
       </div>
-    ) : null;
+    ) : (
+      <p>Loading...</p>
+    );
   }
 };
 

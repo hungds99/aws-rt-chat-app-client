@@ -2,11 +2,11 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import AuthLayout from './pages/Auth/layout';
+import Conversations from './pages/Conversations';
 import Home from './pages/Home';
 import ProtectLayout from './pages/ProtectLayout';
-import Rooms from './pages/Rooms';
-import Chat from './pages/Rooms/Chat';
 import { AuthProvider } from './providers/auth';
+import ConversationsLayout from './pages/Conversations/layout';
 
 const router = createBrowserRouter([
   {
@@ -31,12 +31,14 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: '/rooms',
-        element: <Rooms />
-      },
-      {
-        path: '/chat/:roomId',
-        element: <Chat />
+        path: '/conversations',
+        element: <ConversationsLayout />,
+        children: [
+          {
+            index: true,
+            element: <Conversations />
+          }
+        ]
       }
     ]
   },
