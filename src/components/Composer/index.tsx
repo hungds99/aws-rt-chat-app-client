@@ -1,14 +1,14 @@
-import { useContext, useState } from 'react';
-import { wsMessage } from '../../api/websocket/message';
-import { AuthContext } from '../../providers/auth';
-import { Button } from '../ui/Button';
-import { Input } from '../ui/Input';
-import './style.css';
+import { useContext, useState } from "react";
+import { wsMessage } from "../../api/websocket/message";
+import { AuthContext } from "../../providers/auth";
+import { Button } from "../ui/Button";
+import { Input } from "../ui/Input";
+import "./style.css";
 
 const Composer = ({ roomId }) => {
   const { user } = useContext(AuthContext);
 
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleMessageChange = (e: any) => {
     setMessage(e.target.value);
@@ -17,16 +17,16 @@ const Composer = ({ roomId }) => {
   const handleSendMessage = () => {
     if (message && user.id && roomId) {
       wsMessage.createMessage(roomId, user?.id, message);
-      setMessage('');
+      setMessage("");
     }
   };
 
   return (
-    <div className='message-composer'>
+    <div className="message-composer">
       <Input
         value={message}
-        type='text'
-        placeholder='Type a message...'
+        type="text"
+        placeholder="Type a message..."
         onChange={handleMessageChange}
       />
       <Button onClick={handleSendMessage}>Send</Button>

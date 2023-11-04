@@ -1,7 +1,7 @@
-import { useContext, useEffect } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import { wsAuth } from '../api/websocket/auth';
-import { AuthContext } from '../providers/auth';
+import { useContext, useEffect } from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import { wsAuth } from "../api/websocket/auth";
+import { AuthContext } from "../providers/auth";
 
 const ProtectPage = () => {
   const { user } = useContext(AuthContext);
@@ -10,7 +10,7 @@ const ProtectPage = () => {
     user && wsAuth.auth(user);
   }, [user]);
 
-  return user ? <Outlet /> : <Navigate to={'/login'} />;
+  return user ? <Outlet /> : <Navigate to={"/login"} />;
 };
 
 export default ProtectPage;
