@@ -2,10 +2,10 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import AuthLayout from './pages/Auth/layout';
-import Messages from './pages/Conversations/Messages';
-import ConversationsLayout from './pages/Conversations/layout';
 import Home from './pages/Home';
 import ProtectLayout from './pages/ProtectLayout';
+import RoomDetail from './pages/Rooms/RoomDetail';
+import RoomsLayout from './pages/Rooms/layout';
 import { AuthProvider } from './providers/auth';
 
 const router = createBrowserRouter([
@@ -31,12 +31,12 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: '/conversations',
-        element: <ConversationsLayout />,
+        path: '/rooms',
+        element: <RoomsLayout />,
         children: [
           {
             path: ':roomId',
-            element: <Messages />
+            element: <RoomDetail />
           }
         ]
       }

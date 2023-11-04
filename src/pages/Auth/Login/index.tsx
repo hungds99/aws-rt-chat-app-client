@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import { useContext, useState } from 'react';
-import { Link, redirect } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Button } from '../../../components/ui/Button';
 import {
@@ -29,6 +29,7 @@ const loginValidation = {
 const Login = () => {
   const { login } = useContext(AuthContext);
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -39,7 +40,7 @@ const Login = () => {
     onSubmit: async (values) => {
       try {
         await login(values.email, values.password);
-        redirect('/');
+        navigate('/');
       } catch (error) {
         setIsError(true);
       }

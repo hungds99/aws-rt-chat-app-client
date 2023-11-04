@@ -1,19 +1,16 @@
 import { useContext, useEffect } from 'react';
-import { Outlet, redirect } from 'react-router-dom';
-import { AuthContext } from '../providers/auth';
+import { Navigate, Outlet } from 'react-router-dom';
 import { wsAuth } from '../api/websocket/auth';
+import { AuthContext } from '../providers/auth';
 
 const ProtectPage = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!user) {
-      redirect('/auth/login');
-    }
-    wsAuth.auth(user);
+    user && wsAuth.auth(user);
   }, [user]);
 
-  return <Outlet />;
+  return user ? <Outlet /> : <Navigate to={'/login'} />;
 };
 
 export default ProtectPage;

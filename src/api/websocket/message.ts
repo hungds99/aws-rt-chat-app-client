@@ -21,6 +21,7 @@ export const wsMessage = {
         response?.status === 'MESSAGE_RECEIVED'
       ) {
         const message = response?.data?.data || response?.data;
+        console.log('message', message);
         cb(message);
       }
     };

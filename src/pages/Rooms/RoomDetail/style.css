@@ -1,0 +1,42 @@
+.room-detail___empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.room-detail__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  padding: 5px 10px;
+  background-color: #f5f5f5;
+}
+
+.room-detail__avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.room-detail__avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.room-detail___content {
+  display: flex;
+  flex: 1;
+  overflow-y: auto;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.room-detail___footer {
+  padding: 5px 10px;
+  background-color: #f5f5f5;
+}
