@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { RoomServices } from '../../api/services/room';
-import Room from './Room';
-import './style.css';
+import { useEffect, useState } from "react";
+import { RoomServices } from "../../api/services/room";
+import Room from "./Room";
+import "./style.css";
 
 const RoomList = () => {
   const [rooms, setRooms] = useState([]);
@@ -14,13 +14,13 @@ const RoomList = () => {
   }, []);
 
   return (
-    <div className='room-list'>
+    <div className="room-list">
       {rooms.length > 0 ? (
         rooms.map((room, index) => {
           return <Room key={index} room={room} />;
         })
       ) : (
-        <div className='room-list__empty'>No rooms</div>
+        <div className="room-list__empty">No rooms</div>
       )}
     </div>
   );

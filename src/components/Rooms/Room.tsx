@@ -1,5 +1,5 @@
-import clsx from 'clsx';
-import { useNavigate, useParams } from 'react-router-dom';
+import clsx from "clsx";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Room = ({ room }) => {
   const navigate = useNavigate();
@@ -12,23 +12,23 @@ const Room = ({ room }) => {
 
   return (
     <div
-      className={clsx('room-item', {
-        'room-item--active': room.id === roomId
+      className={clsx("room-item", {
+        "room-item--active": room.id === roomId,
       })}
       onClick={() => handleRoomSelect(room.id)}
     >
-      <div className='room-item__avatar'>
+      <div className="room-item__avatar">
         <img
           width={50}
           height={50}
-          src='https://picsum.photos/200'
-          alt='avatar'
+          src="https://picsum.photos/200"
+          alt="avatar"
         />
       </div>
-      <div className='room-item__info'>
-        <div className='room-item__info__name'>Room name</div>
-        <div className='room-item__info__last-message'>
-          {room.lastMessage?.content ? room.lastMessage?.content : 'No message'}
+      <div className="room-item__info">
+        <div className="room-item__info__name">Room name</div>
+        <div className="room-item__info__last-message">
+          {room.lastMessage?.content ? room.lastMessage?.content : "No message"}
         </div>
       </div>
     </div>

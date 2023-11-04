@@ -1,16 +1,16 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { RoomServices } from '../../api/services/room';
-import { wsMessage } from '../../api/websocket/message';
-import { AuthContext } from '../../providers/auth';
-import Message from './Message';
-import './style.css';
+import { useContext, useEffect, useRef, useState } from "react";
+import { RoomServices } from "../../api/services/room";
+import { wsMessage } from "../../api/websocket/message";
+import { AuthContext } from "../../providers/auth";
+import Message from "./Message";
+import "./style.css";
 
 const MessageList = ({ roomId }) => {
   const { user } = useContext(AuthContext);
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
-    messagesEndRef?.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef?.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const [messages, setMessages] = useState([]);
@@ -34,7 +34,7 @@ const MessageList = ({ roomId }) => {
   }, []);
 
   return (
-    <div className='message-list'>
+    <div className="message-list">
       {messages.map((message, index) => (
         <Message key={index} message={message} owner={user} />
       ))}

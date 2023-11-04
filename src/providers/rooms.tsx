@@ -1,7 +1,7 @@
-import { createContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { RoomServices } from '../api/services/room';
-import { Room } from '../shared/interface/room';
+import { createContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { RoomServices } from "../api/services/room";
+import { Room } from "../shared/interface/room";
 
 interface RoomContextProps {
   room: Room | null;
