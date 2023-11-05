@@ -61,7 +61,7 @@ const Login = () => {
                 id='email'
                 name='email'
                 type='email'
-                placeholder='example@gmail.com'
+                placeholder='Enter your email'
                 onChange={formik.handleChange}
                 value={formik.values.email}
                 error={formik.errors.email}
@@ -75,7 +75,7 @@ const Login = () => {
                 id='password'
                 name='password'
                 type='password'
-                placeholder='********'
+                placeholder='Enter your password'
                 onChange={formik.handleChange}
                 value={formik.values.password}
                 error={formik.errors.password}

@@ -1,6 +1,21 @@
 .btn {
-  padding: 0.5rem 1.5rem;
+  width: 100%;
+  padding: 0.75rem;
   border-radius: 0.25rem;
   border: none;
   cursor: pointer;
+  background-color: rgb(10, 57, 225);
+  color: #ffffff;
+  font-size: medium;
+}
+
+.btn:hover {
+  background-color: rgb(69, 102, 224);
+  color: #ffffff;
+}
+
+.btn:disabled {
+  background-color: rgb(128, 128, 128);
+  color: #ffffff;
+  cursor: not-allowed;
 }
