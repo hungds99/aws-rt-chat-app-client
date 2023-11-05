@@ -18,7 +18,6 @@ const RoomsLayout = () => {
         <Card className='room-layout__card'>
           <CardHeader className='room-layout__header'>
             <Button>Home</Button>
-            <Button>New messages</Button>
           </CardHeader>
           <CardContent className='room-layout__content'>
             <div className='room-layout__left'>
