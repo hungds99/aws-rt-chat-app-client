@@ -10,7 +10,10 @@ const MessageList = ({ roomId }) => {
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
-    messagesEndRef?.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef?.current?.scrollIntoView({
+      block: 'end',
+      inline: 'nearest'
+    });
   };
 
   const [messages, setMessages] = useState([]);
@@ -30,8 +33,11 @@ const MessageList = ({ roomId }) => {
 
   useEffect(() => {
     wsMessage.subscribeNewMessage(getNewMessage);
-    scrollToBottom();
   }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <div className='message-list'>

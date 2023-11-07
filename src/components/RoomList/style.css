@@ -1,6 +1,7 @@
 .room-list {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -42,7 +43,9 @@
 }
 
 .room-item__info__last-message {
-  max-width: 120px;
+  /* max-width: 120px; */
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .room-item__info__last-message p {
@@ -51,4 +54,9 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  line-clamp: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
